@@ -1,11 +1,19 @@
+import { Orbitron_400Regular, Orbitron_500Medium, Orbitron_600SemiBold, Orbitron_700Bold, useFonts } from '@expo-google-fonts/orbitron';
 import { Stack } from 'expo-router';
-import "../global.css";
+import "../../global.css";
 
 export default function Layout() {
+
+  const [fontsLoaded] = useFonts({
+    Orbitron_400Regular,
+    Orbitron_500Medium,
+    Orbitron_600SemiBold,
+    Orbitron_700Bold,
+  })
+
   return (
-    <Stack screenOptions={{ headerStyle: { backgroundColor: '#000' }, headerTintColor: '#FFD700', headerShown: false }}>
-      <Stack.Screen name="index" />
-      <Stack.Screen name="details/[id]" options={{ title: 'Escolher' }}/>
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="index"/>
     </Stack>
   );
 }
