@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Alert, SafeAreaView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { AuthService } from '../services/authService';
 
-export default function RegisterScreen() {
+export default function Register() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

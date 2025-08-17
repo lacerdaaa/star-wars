@@ -63,7 +63,7 @@ export default function HomeScreen() {
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={() => router.push('/_sitemap')}
+        onPress={() => router.push('/register')}
         disabled={isLoading}
       >
         <Text className="text-yellow-400 font-orbitron-medium">
