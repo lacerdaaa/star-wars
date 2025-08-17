@@ -26,7 +26,7 @@ export default function HomeScreen() {
         placeholder="Senha"
         placeholderTextColor="#A1A1AA"
         secureTextEntry
-        className="w-full bg-zinc-900 text-white px-4 py-3 rounded-lg border border-yellow-400 mb-6"
+        className="w-full bg-zinc-900 text-white px-4 py-3 rounded-lg border border-yellow-400 mb-6 focus:ring-1 focus:shadow"
       />
 
       <TouchableOpacity className="w-full bg-yellow-400 py-3 rounded-lg active:bg-yellow-300">
@@ -35,13 +35,13 @@ export default function HomeScreen() {
         </Text>
       </TouchableOpacity>
 
-      <Text className="text-gray-400 mt-8 text-center font-orbitron-medium text-lg">
+      <Text className="text-gray-400 mt-8 text-center font-orbitron-medium text-md">
         Que a Força esteja com você
       </Text>
 
       <Image
-        source={require('../assets/images/moon.png')}
-        className="absolute bottom-[-170] self-center"
+        source={require('../assets/images/death-star.png')}
+        className="absolute bottom-[-170] self-center -rotate-30"
         style={{ width: 400, height: 400 }}
         resizeMode="cover"
       />
