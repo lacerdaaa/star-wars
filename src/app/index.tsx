@@ -1,9 +1,29 @@
+import { router } from 'expo-router';
 import { useState } from 'react';
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { AuthService } from '../services/authService';
 
 export default function HomeScreen() {
   const [userValue, setUserValue] = useState('');
   const [userPasswordValue, setUserPasswordValue] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleLogin = async () => {
+    if (!userValue.trim() || !userPasswordValue.trim()) {
+      Alert.alert('Erro', 'Preencha todos os campos');
+      return;
+    }
+
+    setIsLoading(true);
+    const result = await AuthService.login(userValue.trim(), userPasswordValue);
+    setIsLoading(false);
+
+    if (result.success) {
+      router.replace('/(app)/dashboard');
+    } else {
+      Alert.alert('Erro', result.message);
+    }
+  };
 
   return (
     <View className="flex-1 bg-black items-center justify-center px-6">
@@ -15,9 +35,11 @@ export default function HomeScreen() {
       <TextInput
         value={userValue}
         onChangeText={setUserValue}
-        placeholder="Usuário Jedi"
+        placeholder="Email ou Usuário"
         placeholderTextColor="#A1A1AA"
         className="w-full bg-zinc-900 text-white px-4 py-3 rounded-lg border border-yellow-400 mb-4"
+        autoCapitalize="none"
+        editable={!isLoading}
       />
 
       <TextInput
@@ -26,12 +48,26 @@ export default function HomeScreen() {
         placeholder="Senha"
         placeholderTextColor="#A1A1AA"
         secureTextEntry
-        className="w-full bg-zinc-900 text-white px-4 py-3 rounded-lg border border-yellow-400 mb-6 focus:ring-1 focus:shadow"
+        className="w-full bg-zinc-900 text-white px-4 py-3 rounded-lg border border-yellow-400 mb-6"
+        editable={!isLoading}
       />
 
-      <TouchableOpacity className="w-full bg-yellow-400 py-3 rounded-lg active:bg-yellow-300">
+      <TouchableOpacity
+        className={`w-full py-3 rounded-lg mb-4 ${isLoading ? 'bg-yellow-600' : 'bg-yellow-400 active:bg-yellow-300'}`}
+        onPress={handleLogin}
+        disabled={isLoading}
+      >
         <Text className="text-black font-bold text-center text-lg">
-          Entrar na Galáxia
+          {isLoading ? 'Entrando...' : 'Entrar na Galáxia'}
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => router.push('/_sitemap')}
+        disabled={isLoading}
+      >
+        <Text className="text-yellow-400 font-orbitron-medium">
+          Não tem conta? Registre-se aqui
         </Text>
       </TouchableOpacity>
 

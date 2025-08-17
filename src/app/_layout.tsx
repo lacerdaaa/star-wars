@@ -29,12 +29,13 @@ export default function Layout() {
   };
 
   if (!fontsLoaded || isAuthenticated === null) {
-    return null; 
+    return null;
   }
 
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="index" />
+      <Stack.Screen name="register" />
     </Stack>
   );
 }
