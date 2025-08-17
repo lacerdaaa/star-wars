@@ -70,7 +70,12 @@ export default function CharactersScreen() {
   const renderCharacter = ({ item }: { item: Character }) => (
     <TouchableOpacity
       className="bg-zinc-900 border border-yellow-400/30 p-4 rounded-lg mb-3 flex-row justify-between items-center"
-      onPress={() => router.push(`/(app)/characters`)} // TODO: implementar rota para visualiuzar personagens uniso
+      onPress={() => {
+        router.push({
+          pathname: "/(app)/characters/[id]",
+          params: { id: String(item.id) }
+        });
+      }}
     >
       <View className="flex-1">
         <Text className="text-white text-lg font-orbitron-medium mb-1">
@@ -92,7 +97,6 @@ export default function CharactersScreen() {
 
   return (
     <SafeAreaView className="flex-1 bg-black px-4 pt-4">
-      {/* Campo de busca */}
       <TextInput
         placeholder="Buscar personagem..."
         placeholderTextColor="#aaa"
