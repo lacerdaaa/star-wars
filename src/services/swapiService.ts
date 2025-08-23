@@ -1,4 +1,5 @@
 import { Character } from "../models/character";
+import { Film } from "../models/film";
 
 const BASE_URL = 'https://swapi.online/api';
 
@@ -27,5 +28,29 @@ export class SwapiService {
       console.error('Erro ao buscar personagem:', error);
       return null;
     }
-  }
-}
+  };
+
+  static async searchFilms(search?: string): Promise<Film[]> {
+    try {
+      const url = search ? `${BASE_URL}/films/search=${encodeURI(search)}` : `${BASE_URL}/films`
+      const response = await fetch(url);
+
+      return response.json();
+    } catch (error) {
+      console.log('Erro ao buscar filme.')
+      return [];
+    };
+  };
+
+  static async getFilmById(id: string) {
+    try {
+      const url = `${BASE_URL}/films/${id}`;
+      const response = await fetch(url);
+
+      return response.json();
+    } catch (error) {
+      console.log(error)
+      throw new Error('Erro ao fazer fetch do filme.')
+    }
+  };
+};

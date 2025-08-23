@@ -1,7 +1,7 @@
 import { Character } from '@/src/models/character';
 import { FavoritesService } from '@/src/services/favoritesService';
 import { SwapiService } from '@/src/services/swapiService';
-import { router } from 'expo-router';
+import { Link } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
@@ -68,31 +68,30 @@ export default function CharactersScreen() {
   };
 
   const renderCharacter = ({ item }: { item: Character }) => (
-    <TouchableOpacity
-      className="bg-zinc-900 border border-yellow-400/30 p-4 rounded-lg mb-3 flex-row justify-between items-center"
-      onPress={() => {
-        router.push({
-          pathname: "/(app)/characters/[id]",
-          params: { id: String(item.id) }
-        });
-      }}
-    >
-      <View className="flex-1">
-        <Text className="text-white text-lg font-orbitron-medium mb-1">
-          {item.name}
-        </Text>
-        <Text className="text-gray-400 text-sm">Altura: {item.height}</Text>
-      </View>
-
+    <Link href={{
+      pathname: '/(app)/characters/[id]',
+      params: { id: item.id }
+    }} asChild>
       <TouchableOpacity
-        onPress={() => toggleFavorite(item)}
-        className="ml-4"
+        className="bg-zinc-900 border border-yellow-400/30 p-4 rounded-lg mb-3 flex-row justify-between items-center"
       >
-        <Text className="text-yellow-400">
-          {favorites.includes(item.id) ? '★' : '☆'}
-        </Text>
+        <View className="flex-1">
+          <Text className="text-white text-lg font-orbitron-medium mb-1">
+            {item.name}
+          </Text>
+          <Text className="text-gray-400 text-sm">Altura: {item.height}</Text>
+        </View>
+
+        <TouchableOpacity
+          onPress={() => toggleFavorite(item)}
+          className="ml-4"
+        >
+          <Text className="text-yellow-400">
+            {favorites.includes(item.id) ? '★' : '☆'}
+          </Text>
+        </TouchableOpacity>
       </TouchableOpacity>
-    </TouchableOpacity>
+    </Link>
   );
 
   return (

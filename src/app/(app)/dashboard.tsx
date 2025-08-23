@@ -10,6 +10,18 @@ export default function Dashboard() {
       route: '/characters',
       icon: '👤'
     },
+    { 
+      title: 'Filmes',
+      subtitle: 'Explore a sequência dos filmes',
+      route: '/films',
+      icon: '🎥',
+    },
+    { 
+      title: "Naves",
+      subtitle: "Explore as naves usadas pelos personagens",
+      route: '/vehicles',
+      icon: '🚀'
+    }
   ];
 
   return (
@@ -22,7 +34,7 @@ export default function Dashboard() {
           Explore a galáxia distante
         </Text>
 
-        <View className="flex-1 justify-center space-y-4">
+        <View className="flex-1 justify-center gap-4 space-y-4">
           {menuItems.map((item, index) => (
             <TouchableOpacity
               key={index}
@@ -31,7 +43,7 @@ export default function Dashboard() {
             >
               <View className="flex-row items-center">
                 <Text className="text-2xl mr-4">{item.icon}</Text>
-                <View className="flex-1">
+                <View className="flex-1 ">
                   <Text className="text-white text-lg font-orbitron-medium">
                     {item.title}
                   </Text>

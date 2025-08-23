@@ -1,3 +1,5 @@
+import { Film } from "./film";
+
 export interface Character {
   id: number;
   name: string;
@@ -9,7 +11,7 @@ export interface Character {
   birth_year: string;
   gender: string;
   homeworld: string;
-  films: string[];
+  films: Film[];
   species: string[];
   vehicles: string[];
   starships: string[];

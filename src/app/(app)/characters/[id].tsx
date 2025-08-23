@@ -12,7 +12,7 @@ import {
 import { FavoritesService } from '../../../services/favoritesService';
 import { SwapiService } from '../../../services/swapiService';
 
-type Params = {
+export type Params = {
   id: string;
 };
 
