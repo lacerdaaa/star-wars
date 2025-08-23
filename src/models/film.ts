@@ -1,6 +1,7 @@
 import { Character } from "./character";
 
 export interface Film {
+  id: string,
   title: string,
   episodeId: number,
   openingCrawl: string,

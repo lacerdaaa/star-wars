@@ -1,9 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Character } from '../models/character';
+import { Film } from '../models/film';
 
 export interface Favorites {
   characters: Character[];
-}
+  films: Film[]
+};
 
 export class FavoritesService {
   private static readonly FAVORITES_KEY = 'favorites';
@@ -13,13 +15,14 @@ export class FavoritesService {
       const favoritesJson = await AsyncStorage.getItem(this.FAVORITES_KEY);
       return favoritesJson ? JSON.parse(favoritesJson) : {
         characters: [],
+        films: [],
       };
     } catch (error) {
-      return { characters: [] };
+      return { characters: [], films: [] };
     }
   }
 
-  static async addToFavorites(item: Character, type: 'characters'): Promise<void> {
+  static async addToFavorites(item: Character  Film, type: 'characters' | 'films'): Promise<void> {
     try {
       const favorites = await this.getFavorites();
 
